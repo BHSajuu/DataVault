@@ -14,24 +14,17 @@ function App() {
     <main>
       <ToastContainer />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute roles={["user"]}>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/show" element={<ShowPage />} />
         <Route path="/form" element={<FormPage />} />
-
+        <Route path="/form1" element={<adminForm1 />} />
         {/* ProtectedRoute should use element and be wrapped around the dashboard */}
         <Route
           path="/admin"
           element={
-            <ProtectedRoute roles={["admin", "user"]}>
+            <ProtectedRoute roles={["admin"]}>
               <DashboardLayoutSidebarHidden />
             </ProtectedRoute>
           }

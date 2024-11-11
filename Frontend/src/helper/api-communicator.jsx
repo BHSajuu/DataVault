@@ -1,15 +1,26 @@
 import axios from "axios";
 
 export const loginUser = async (email, password) => {
-  const res = await axios.post("http://localhost:3000/api/users/login", {
-    email,
-    password,
-  });
-  if (res.status !== 200) {
-    throw new Error("Unable to login");
+  try {
+    const res = await axios.post("http://localhost:3000/api/users/login", {
+      email,
+      password,
+    });
+    const data = res.data;
+
+    if (data.token) {
+      localStorage.setItem("token", data.token); // Store token if provided by API
+    }
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error("Login failed:", error.response.data);
+      throw new Error(error.response.data || "Unable to login");
+    } else {
+      throw new Error("An unexpected error occurred during login.");
+    }
   }
-  const data = await res.data;
-  return data;
 };
 
 export const signupUser = async (name, email, password) => {

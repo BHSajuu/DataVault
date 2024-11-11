@@ -18,7 +18,7 @@ export default function SignupPage() {
     name: "",
     email: "",
     password: "",
-    role: "user", // Default to 'user' for role selection
+    role: "", // Default to 'user' for role selection
   });
 
   // Handle form input changes
@@ -117,7 +117,7 @@ export default function SignupPage() {
 
           {/* Role Selection Field */}
           <Select
-            label="Role"
+            label="role"
             name="role"
             value={formData.role}
             onChange={handleChange}
